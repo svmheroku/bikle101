@@ -35,5 +35,7 @@ sqt>fx_past.txt<<EOF
 EOF
 grep -v 'rows selected' _fx_past_spool.html.erb > tmp.html
 
+exit
+
 # Use Nokogiri to massage the HTML in tmp.html and redirect it into the partial full of a-tags:
-ruby index.rb > /pt/s/rl/bikle101/app/views/predictions/_fx_past_spool.html.erb
+bundle exec ruby index.rb > /pt/s/rl/bikle101/app/views/predictions/_fx_past_spool.html.erb
