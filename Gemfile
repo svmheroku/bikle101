@@ -13,6 +13,8 @@ group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 
+gem 'haml'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
