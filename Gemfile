@@ -14,6 +14,7 @@ group :development do
 end
 
 gem 'haml'
+gem 'nokogiri'
 
 # Use unicorn as the web server
 # gem 'unicorn'
