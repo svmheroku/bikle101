@@ -6,6 +6,7 @@
     $("div#help4_currencypair").hide();
     $("div#help4_avgdanbotscore").hide();
     $("div#help4_sharperatio").hide();
+    $("div#help4_avgofnormalized5hrgains").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog();
@@ -17,6 +18,10 @@
 
     $("a.sharperatio").click(function(event){
       $("div#help4_sharperatio").dialog();
+    });
+
+    $("a.avgofnormalized5hrgains").click(function(event){
+      $("div#help4_avgofnormalized5hrgains").dialog();
     });
 
   });
@@ -90,8 +95,6 @@
   The Sharpe Ratio for week two is closer to zero than the Sharpe Ratio for week one.
   To calculate the Sharpe Ratio I divide the average by the standard deviation.
   For week one the Sharpe Ratio is 20 / 14.1 and for week two the Sharpe Ratio is 20 / 56.6
- 
 
-  
-
-  
+#help4_avgofnormalized5hrgains(title="Avg of normalized 5hr gains")
+  Like the Sharpe Ratio, I use the results in this column to measure the past effectiveness of the DanBot.
