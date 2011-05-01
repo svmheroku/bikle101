@@ -22,7 +22,7 @@
   });
 
 %br/
-%a.currencypair(href="#") currency_pair 
+%a.currencypair(href="#") Currency Pair 
 %br/
 %a.avgdanbotscore(href="#") Avg DanBot Score
 %br/
@@ -42,7 +42,12 @@
   The DanBot is software I wrote and perfected during the years 2008 through 2011.
   I run the DanBot on a set of servers which feed data to this website.
   The DanBot relies on a machine learning algorithm called:
-  %a(target="w" href="http://en.wikipedia.org/wiki/Support_vector_machine")Support Vector Machine.
+  %a(target="w" href="http://en.wikipedia.org/wiki/Support_vector_machine")Support Vector Machine (SVM).
+  %br/
+  It is easy to find discussion about predicting attributes in time series data using SVM:
+  %a(target="g" href="http://www.google.com/search?q=using+svm+algorithm+to+predict+time+series")
+    SVM and Time Series Data
+  %br/
   The DanBot scores 11 differenct currency pairs every 5 minutes when the Forex market is open.
   Currently the Forex market is open every hour between 9pm Sunday and 9pm Friday London time.
   So, every hour the DanBot calculates 660 scores which is almost 16,000 scores per day.
