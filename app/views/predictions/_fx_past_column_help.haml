@@ -8,6 +8,9 @@
     $("div#help4_sharperatio").hide();
     $("div#help4_avgofnormalized5hrgains").hide();
     $("div#help4_countofpositions").hide();
+    $("div#help4_sumofnormalized5hrgains").hide();
+    $("div#help4_minofnormalized5hrgains").hide();
+    $("div#help4_maxofnormalized5hrgains").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog();
@@ -29,16 +32,20 @@
       $("div#help4_countofpositions").dialog();
     });
 
-  });
+    $("a.sumofnormalized5hrgains").click(function(event){
+      $("div#help4_sumofnormalized5hrgains").dialog();
+    });
 
-/
-  %br/
-  %a.currencypair(href="#") Currency Pair 
-  %br/
-  %a.avgdanbotscore(href="#") Avg DanBot Score
-  %br/
-  %a.sharperatio(href="#") Sharpe Ratio
-  %br/
+    $("a.minofnormalized5hrgains").click(function(event){
+      $("div#help4_minofnormalized5hrgains").dialog();
+    });
+
+    $("a.maxofnormalized5hrgains").click(function(event){
+      $("div#help4_maxofnormalized5hrgains").dialog();
+    });
+
+
+  });
 
 #help4_currencypair(title="Currency Pair")
   Currency pairs have names like EUR/USD.
@@ -127,3 +134,32 @@
   that the DanBot made predictions with a high degree of confidence.
   I measure confidence on a scale from -1 to +1.
   Any score less than -0.55 or greater than +0.55 is worthy of my attention and thus will increment the counts in this column.
+
+#help4_sumofnormalized5hrgains(title="Sum of Normalized 5hr Gains")
+  The values in this column are calculated from the product of two other columns:
+  %ul
+    %li Avg of normalized 5hr gains
+    %li Count of Positions
+  I use the values here to measure the past effectiveness of the DanBot.
+  If the DanBot issued many predictions, because it was confident, and if those predictions were accurate,
+  then that effectiveness will appear here and in the total sum at the bottom of the table.
+
+#help4_minofnormalized5hrgains(title="Min of Normalized 5hr Gains")
+  I use the values in this column for two purposes.
+  First, if the DanBot was effective and if it issued negative scores, then I should see large negative numbers
+  in this column.
+  Secondly, if the DanBot was effective and if it issued negative scores, the values in this column should
+  give me a sense of "best-case-scenario" when I'm holding a position in real-time which I opened due to
+  a large negative score which had captured my attention.
+  If I am holding a lucrative position which has exceeded a "best-case-scenario" before the 5 hour holding period
+  has expired, I might want to close the position early to lock-in a large gain.
+  Conversely,  if the DanBot was effective and if it issued positive scores,
+  then I should see small negative numbers in this column.
+
+#help4_maxofnormalized5hrgains(title="Max of Normalized 5hr Gains")
+  The logic behind the values in this column is similar to the logic explained here:
+  %a.minofnormalized5hrgains(href="#") Min of Normalized 5hr Gains
+
+/
+  %a.currencypair(href="#") Currency Pair 
+
