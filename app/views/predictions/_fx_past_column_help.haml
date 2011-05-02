@@ -11,6 +11,7 @@
     $("div#help4_sumofnormalized5hrgains").hide();
     $("div#help4_minofnormalized5hrgains").hide();
     $("div#help4_maxofnormalized5hrgains").hide();
+    $("div#help4_standarddeviationofnormalized5hrgains").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog();
@@ -42,6 +43,10 @@
 
     $("a.maxofnormalized5hrgains").click(function(event){
       $("div#help4_maxofnormalized5hrgains").dialog();
+    });
+
+    $("a.standarddeviationofnormalized5hrgains").click(function(event){
+      $("div#help4_standarddeviationofnormalized5hrgains").dialog();
     });
 
 
@@ -159,6 +164,18 @@
 #help4_maxofnormalized5hrgains(title="Max of Normalized 5hr Gains")
   The logic behind the values in this column is similar to the logic explained here:
   %a.minofnormalized5hrgains(href="#") Min of Normalized 5hr Gains
+
+#help4_standarddeviationofnormalized5hrgains(title="Standard Deviation of Normalized 5hr Gains")
+  I use the values in this column to gain a sense of how "jumpy" the prices of a currency pair were 
+  during the week in question (over a typical 5 hour period).
+  Note that the values in this column (and some other columns) are for "normalized gains".
+  A gain is typically measured as price2 - price1.
+  This works well if the prices are roughly the same magnitude.
+  In the Forex market though, prices for some pairs are of greater magnitude than of other pairs.
+  For example, the price of the USD/JPY pair is usually between 70 and 80.
+  The price of the EUR/USD pair is usually between 1.2 and 1.8.
+  So when I do a calculation which involves a gain, I prefer to use "normalized gains".
+  I calculate a normalized gain like this: (price2 - price1)/price1
 
 /
   %a.currencypair(href="#") Currency Pair 
