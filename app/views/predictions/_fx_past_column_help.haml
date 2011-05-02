@@ -7,6 +7,7 @@
     $("div#help4_avgdanbotscore").hide();
     $("div#help4_sharperatio").hide();
     $("div#help4_avgofnormalized5hrgains").hide();
+    $("div#help4_countofpositions").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog();
@@ -22,6 +23,10 @@
 
     $("a.avgofnormalized5hrgains").click(function(event){
       $("div#help4_avgofnormalized5hrgains").dialog();
+    });
+
+    $("a.countofpositions").click(function(event){
+      $("div#help4_countofpositions").dialog();
     });
 
   });
@@ -56,8 +61,8 @@
   %br/
   The DanBot scores 11 differenct currency pairs every 5 minutes when the Forex market is open.
   Currently the Forex market is open every hour between 9pm Sunday and 9pm Friday London time.
-  So, every hour the DanBot calculates 660 scores which is almost 16,000 scores per day.
-  If the  DanBot score is between -0.55 and 0.55, then I ignore it.
+  So, every hour the DanBot calculates 660 prediction scores which is almost 16,000 scores per day.
+  If the  DanBot prediction score is between -0.55 and 0.55, then I ignore it.
   If the DanBot score is greater than 0.55 on a currency pair at a point in time,
   then the DanBot is predicting that the currency pair price will be higher after 6 hours.
   Likewise, if the DanBot score is less than -0.55 on a currency pair at a point in time,
@@ -115,3 +120,10 @@
   The commission on a $100,000 position is roughly equivalent to the commission on a $20,000 position.
   So, supposing I wager $500 to open a $20,000 position and then gain $35, what would be my percentage gain?
   It would be 100 x 35 / 500 which is 7% which is a very large gain for a position held for only 5 hours.
+
+#help4_countofpositions(title="Count of Positions")
+  Every hour the Forex market is open, the DanBot calculates 660 prediction scores which is almost 16,000 scores per day.
+  The values in this column indicate how many times during a week
+  that the DanBot made predictions with a high degree of confidence.
+  I measure confidence on a scale from -1 to +1.
+  Any score less than -0.55 or greater than +0.55 is worthy of my attention and thus will increment the counts in this column.
