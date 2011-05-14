@@ -12,6 +12,7 @@
     $("div#help4_minofnormalized5hrgains").hide();
     $("div#help4_maxofnormalized5hrgains").hide();
     $("div#help4_standarddeviationofnormalized5hrgains").hide();
+    $("div#help4_gmttimeathour0").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog();
@@ -49,6 +50,9 @@
       $("div#help4_standarddeviationofnormalized5hrgains").dialog();
     });
 
+    $("a.gmttimeathour0").click(function(event){
+      $("div#help4_gmttimeathour0").dialog();
+    });
 
   });
 
@@ -184,6 +188,17 @@
   The price of the EUR/USD pair is usually between 1.2 and 1.8.
   So when I do a calculation which involves a gain, I prefer to use "normalized gains".
   I calculate a normalized gain like this: (price2 - price1)/price1
+
+#help4_gmttimeathour0(title="GMT / UTC Time at Hour 0")
+  This column contains GMT/UTC timestamps for each prediction-score.  
+  During winter, GMT is 5 hours ahead of EST, 8 hours ahead of PST, and 8 hours behind JST.
+  During summer, GMT is 4 hours ahead of EDT, 7 hours ahead of PDT, 1 hour behind BST, and 8 hours behind JST.
+  %hr/
+  The current GMT/UTC time can be seen here:
+  %a(target="t" href="http://tycho.usno.navy.mil/cgi-bin/timer.pl")http://tycho.usno.navy.mil/cgi-bin/timer.pl
+  %hr/
+  During the winter, the current time in London is identical to GMT/UTC time:
+  %a(target="g" href="http://www.google.com/search?q=current+time+in+London")http://www.google.com/search?q=current+time+in+London
 
 /
   %a.currencypair(href="#") Currency Pair 
