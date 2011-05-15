@@ -13,45 +13,50 @@
     $("div#help4_maxofnormalized5hrgains").hide();
     $("div#help4_standarddeviationofnormalized5hrgains").hide();
     $("div#help4_gmttimeathour0").hide();
+    $("div#help4_danbotscoreathour0").hide();
 
     $("a.currencypair").click(function(event){
-      $("div#help4_currencypair").dialog();
+      $("div#help4_currencypair").dialog({ minWidth: 300 });
     });
 
     $("a.avgdanbotscore").click(function(event){
-      $("div#help4_avgdanbotscore").dialog();
+      $("div#help4_avgdanbotscore").dialog({ minWidth: 550 });
     });
 
     $("a.sharperatio").click(function(event){
-      $("div#help4_sharperatio").dialog();
+      $("div#help4_sharperatio").dialog({ minWidth: 550 });
     });
 
     $("a.avgofnormalized5hrgains").click(function(event){
-      $("div#help4_avgofnormalized5hrgains").dialog();
+      $("div#help4_avgofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
     $("a.countofpositions").click(function(event){
-      $("div#help4_countofpositions").dialog();
+      $("div#help4_countofpositions").dialog({ minWidth: 300 });
     });
 
     $("a.sumofnormalized5hrgains").click(function(event){
-      $("div#help4_sumofnormalized5hrgains").dialog();
+      $("div#help4_sumofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
     $("a.minofnormalized5hrgains").click(function(event){
-      $("div#help4_minofnormalized5hrgains").dialog();
+      $("div#help4_minofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
     $("a.maxofnormalized5hrgains").click(function(event){
-      $("div#help4_maxofnormalized5hrgains").dialog();
+      $("div#help4_maxofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
     $("a.standarddeviationofnormalized5hrgains").click(function(event){
-      $("div#help4_standarddeviationofnormalized5hrgains").dialog();
+      $("div#help4_standarddeviationofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
     $("a.gmttimeathour0").click(function(event){
-      $("div#help4_gmttimeathour0").dialog();
+      $("div#help4_gmttimeathour0").dialog({ minWidth: 300 });
+    });
+
+    $("a.danbotscoreathour0").click(function(event){
+      $("div#help4_danbotscoreathour0").dialog({ minWidth: 550 });
     });
 
   });
@@ -66,28 +71,7 @@
   For example, the EUR/USD pair is often mentioned in the media, but the USD/EUR pair is not.
 
 #help4_avgdanbotscore(title="Avg DanBot Score")
-  The DanBot is software I wrote and perfected during the years 2008 through 2011.
-  I run the DanBot on a set of servers which feed data to this website.
-  The DanBot relies on a machine learning algorithm called:
-  %a(target="w" href="http://en.wikipedia.org/wiki/Support_vector_machine")Support Vector Machine (SVM).
-  %br/
-  It is easy to find discussion about predicting attributes in time series data using SVM:
-  %a(target="g" href="http://www.google.com/search?q=using+svm+algorithm+to+predict+time+series")
-    SVM and Time Series Data
-  %br/
-  The DanBot scores 11 differenct currency pairs every 5 minutes when the Forex market is open.
-  Currently the Forex market is open every hour between 9pm Sunday and 9pm Friday London time.
-  So, every hour the DanBot calculates 660 prediction scores which is almost 16,000 scores per day.
-  If the  DanBot prediction score is between -0.55 and 0.55, then I ignore it.
-  If the DanBot score is greater than 0.55 on a currency pair at a point in time,
-  then the DanBot is predicting that the currency pair price will be higher after 6 hours.
-  Likewise, if the DanBot score is less than -0.55 on a currency pair at a point in time,
-  then the DanBot is predicting that the currency pair price will be lower after 6 hours.
-  I ignore the vast majority of DanBot scores.
-  In a typical week, about 1,000 DanBot scores will catch my attention.
-  Once I see a DanBot score that I like, I wait until the score is 1 hour old.
-  Then I check the price of the currency pair.  If the price has not moved much during that 1 hour,
-  I will open a position in that currency pair for 5 hours and then I will close it.
+  =render :partial => "fx_column_help_danbot"
 
 #help4_sharperatio(title="Sharpe Ratio")
   I use the Sharpe Ratio to help me measure the past effectiveness of the DanBot.
@@ -198,7 +182,12 @@
   %a(target="t" href="http://tycho.usno.navy.mil/cgi-bin/timer.pl")http://tycho.usno.navy.mil/cgi-bin/timer.pl
   %hr/
   During the winter, the current time in London is identical to GMT/UTC time:
-  %a(target="g" href="http://www.google.com/search?q=current+time+in+London")http://www.google.com/search?q=current+time+in+London
+  %a(target="g" href="http://www.google.com/search?q=current+time+in+London")
+    http://www.google.com/search?q=current+time+in+London
+
+#help4_danbotscoreathour0(title="DanBot Score")
+  =render :partial => "fx_column_help_danbot"
+
 
 /
   %a.currencypair(href="#") Currency Pair 
