@@ -257,14 +257,27 @@
   or I follow the prediction and open a position in the currency pair.
 
 #help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain(title="Recent Corr-tween Scores and Gains")
-  When I see a score calculated by the DanBot for a pair,
+  When I see a DanBot-score for a pair,
   usually I want to know the recent accuracy (over the past day) of DanBot for that pair.
-  The accuracy measure I use is Pearson's correlation coefficent:
+  The accuracy measure I use is Pearson correlation coefficent:
   %a(target="w" href="http://en.wikipedia.org/wiki/Correlation")http://en.wikipedia.org/wiki/Correlation
   %br/
   %br/
-  Specifically I measure the correlation between all scores (between -1 and +1)
-  and all gains for the pair over the past day.
+  Specifically I measure the correlation between all scores (almost 290 scores)
+  and all gains for the currency pair over the past 24 hours which the Forex market had been open.
+  %br/
+  %br/
+  If I see a correlation greater than 0.10, I'm happy.
+  If the correlation is between 0.0 and 0.05, that is similar to flipping a coin to make predictions.
+  If the correlation is less than 0, that means the DanBot had been issuing "false-positive" predictions
+  which were money losing predictions had I followed them.
+  %br/
+  %br/
+  I've used back-tests to confirm that that this correlation-based-measurement changes relatively slowly.
+  So I only display pairs which have a measurement greater than 0.10.
+  %br/
+
+
 
 /
   %a.currencypair(href="#") Currency Pair 
