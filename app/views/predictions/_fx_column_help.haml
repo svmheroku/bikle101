@@ -19,22 +19,13 @@
     $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").hide();
     $("div#help4_priceafter1hour").hide();
     $("div#help4_normalized1hrgain").hide();
+    $("div#help4_priceafter6hours").hide();
+    $("div#help4_5hourgainbetweenhr1andhr6").hide();
+    $("div#help4_normalized5hrgain").hide();
 
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog({ minWidth: 300 });
-    });
-
-    $("a.normalized1hrgain").click(function(event){
-      $("div#help4_normalized1hrgain").dialog({ minWidth: 300 });
-    });
-
-    $("a.1dayrunningcorrelationbetweendanbotscoreand6hrgain").click(function(event){
-      $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").dialog({ minWidth: 300 });
-    });
-
-    $("a.priceathour0").click(function(event){
-      $("div#help4_priceathour0").dialog({ minWidth: 300 });
     });
 
     $("a.avgdanbotscore").click(function(event){
@@ -73,6 +64,8 @@
       $("div#help4_standarddeviationofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
+
+
     $("a.gmttimeathour0").click(function(event){
       $("div#help4_gmttimeathour0").dialog({ minWidth: 300 });
     });
@@ -81,8 +74,32 @@
       $("div#help4_danbotscoreathour0").dialog({ minWidth: 550 });
     });
 
+    $("a.priceathour0").click(function(event){
+      $("div#help4_priceathour0").dialog({ minWidth: 300 });
+    });
+
     $("a.priceafter1hour").click(function(event){
       $("div#help4_priceafter1hour").dialog({ minWidth: 300 });
+    });
+
+    $("a.normalized1hrgain").click(function(event){
+      $("div#help4_normalized1hrgain").dialog({ minWidth: 300 });
+    });
+
+    $("a.priceafter6hours").click(function(event){
+      $("div#help4_priceafter6hours").dialog({ minWidth: 300 });
+    });
+
+    $("a.5hourgainbetweenhr1andhr6").click(function(event){
+      $("div#help4_5hourgainbetweenhr1andhr6").dialog({ minWidth: 300 });
+    });
+
+    $("a.normalized5hrgain").click(function(event){
+      $("div#help4_normalized5hrgain").dialog({ minWidth: 300 });
+    });
+
+    $("a.1dayrunningcorrelationbetweendanbotscoreand6hrgain").click(function(event){
+      $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").dialog({ minWidth: 300 });
     });
 
   });
@@ -448,6 +465,10 @@
   The price for the pair at that time is displayed here.
   %br/
   %br/
+  If the values here are blank either we are not at Hour 1 yet
+  or my price-data-feed has crashed
+  or the WebBot which transfers data from the DanServers to this website has crashed.
+  %br/
 
 #help4_normalized1hrgain(title="Normalized 1 Hour Gain")
   After the DanBot issues a prediction-score for a pair, I wait 1 hour.
@@ -501,6 +522,73 @@
   I then open a position in the pair until exactly Hour 6 and then close it using a clock controlled order.
   %br/
   %br/
+  This second way of reacting to DanBot-score is less disciplined than the first
+  but I have validated that it is an effective way to trade using back-testing.
+  %br/
+  %br/
+
+#help4_priceafter6hours(title="Price At Hour 6")
+  This is the price of the currency-pair 6 hours after the DanBot-score was calculated.
+  %br/
+  %br/
+  If the values here are blank either we are not at Hour 6 yet
+  or my price-data-feed has crashed
+  or the WebBot which transfers data from the DanServers to this website has crashed.
+  %br/
+  %br/
+
+#help4_5hourgainbetweenhr1andhr6(title="5 Hour Gain Between Hour 1 and Hour 6")
+  Typically I open a position at Hour 1 and close it at Hour 6 which is a 5 hour duration.
+  %br/
+  %br/
+  The change in price of the currency-pair over that 5 hour duration is displayed here.
+  %br/
+  %br/
+
+#help4_normalized5hrgain(title="Normalized 5 Hour Gain Between Hour 1 and Hour 6")
+  Typically I open a position at Hour 1 and close it at Hour 6 which is a 5 hour duration.
+  %br/
+  %br/
+  Over that 5 hour duration, 
+  the change in price of the currency-pair divided by the price at Hour 0 is displayed here.
+  %br/
+  %br/
+  Suppose I open a short-position in AUD/JPY (due to a DanBot score of -0.74 I noticed).
+  %br/
+  %br/
+  I open the position at Hour 1 at a price of 86.3473.
+  %br/
+  %br/
+  I wait 5 hours and close the position at Hour 6 at a price of 85.9327.
+  %br/
+  %br/
+  The 5 hour gain would then be: -0.4146
+  %br/
+  %br/
+  The normalized 5 hour gain would be about - 0.41 / 86 which is about -0.0048.
+  %br/
+  %br/
+  This gain would be less lucrative than a short-position in EUR/USD which had a price move of 
+  1.4313 to 1.4225.
+  %br/
+  %br/
+  The normalized 5 hour gain for the EUR/USD position is about:
+  %br/
+  %br/
+  (1.4225 - 1.4313) / 1.43 which is about -0.0060.
+  %br/
+  %br/
+  So, the normalized gain of the short-position in AUD/JPY is about -0.0048.
+  %br/
+  %br/
+  And the normalized gain of the short-position in EUR/USD is about -0.0060.
+  %br/
+  %br/
+  Clearly the short-position in EUR/USD is more lucrative than the short-position in AUD/JPY.
+  %br/
+  %br/
+
+
 
 
 /
