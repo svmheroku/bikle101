@@ -14,9 +14,19 @@
     $("div#help4_standarddeviationofnormalized5hrgains").hide();
     $("div#help4_gmttimeathour0").hide();
     $("div#help4_danbotscoreathour0").hide();
+    $("div#help4_priceathour0").hide();
+    $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog({ minWidth: 300 });
+    });
+
+    $("a.1dayrunningcorrelationbetweendanbotscoreand6hrgain").click(function(event){
+      $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").dialog({ minWidth: 300 });
+    });
+
+    $("a.priceathour0").click(function(event){
+      $("div#help4_priceathour0").dialog({ minWidth: 300 });
     });
 
     $("a.avgdanbotscore").click(function(event){
@@ -231,6 +241,30 @@
 #help4_danbotscoreathour0(title="DanBot Score")
   =render :partial => "fx_column_help_danbot"
 
+#help4_priceathour0(title="DanBot Score at Hour 0")
+  When the DanBot wants to make a prediction about a pair, I feed it two pieces of information.
+  %br/
+  %br/
+  I tell it the price of the pair and I tell DanBot what time it is (GMT time).
+  I refer to the price as the "Price at Hour 0".
+  %br/
+  %br/
+  If the DanBot calculates a prediction-score that I like (below -0.55 or above +0.55) I wait for 1 hour.
+  %br/
+  %br/
+  Then I decide to either ignore the prediction
+  (usually because the price has made a large move in the last hour),
+  or I follow the prediction and open a position in the currency pair.
+
+#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain(title="Recent Corr-tween Scores and Gains")
+  When I see a score calculated by the DanBot for a pair,
+  usually I want to know the recent accuracy (over the past day) of DanBot for that pair.
+  The accuracy measure I use is Pearson's correlation coefficent:
+  %a(target="w" href="http://en.wikipedia.org/wiki/Correlation")http://en.wikipedia.org/wiki/Correlation
+  %br/
+  %br/
+  Specifically I measure the correlation between all scores (between -1 and +1)
+  and all gains for the pair over the past day.
 
 /
   %a.currencypair(href="#") Currency Pair 
