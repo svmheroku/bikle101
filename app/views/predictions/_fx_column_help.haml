@@ -18,11 +18,16 @@
     $("div#help4_priceathour0").hide();
     $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").hide();
     $("div#help4_priceafter1hour").hide();
+    $("div#help4_normalized1hrgain").hide();
+
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog({ minWidth: 300 });
     });
 
+    $("a.normalized1hrgain").click(function(event){
+      $("div#help4_normalized1hrgain").dialog({ minWidth: 300 });
+    });
 
     $("a.1dayrunningcorrelationbetweendanbotscoreand6hrgain").click(function(event){
       $("div#help4_1dayrunningcorrelationbetweendanbotscoreand6hrgain").dialog({ minWidth: 300 });
@@ -392,7 +397,7 @@
 #help4_danbotscoreathour0(title="DanBot Score")
   =render :partial => "fx_column_help_danbot"
 
-#help4_priceathour0(title="DanBot Score at Hour 0")
+#help4_priceathour0(title="Price at Hour 0")
   Every five minutes, for each of the 11 currency-pairs, I feed the DanBot two pieces of information.
   %br/
   %br/
@@ -406,6 +411,9 @@
   Then I decide to either ignore the prediction
   (usually because the of a large price-move move in the last hour),
   or I follow the prediction and open a position in the currency-pair.
+  %br/
+  %br/
+  Then I close the position 5 hours later (using a clock controlled order in my brokerage account).
   %br/
   %br/
   I consider a price-move large (during a 1 hour period) if its normalized gain is below -0.0010 or above +0.0010.
@@ -438,6 +446,59 @@
   %br/
   %br/
   The price for the pair at that time is displayed here.
+  %br/
+  %br/
+
+#help4_normalized1hrgain(title="Normalized 1 Hour Gain")
+  After the DanBot issues a prediction-score for a pair, I wait 1 hour.
+  %br/
+  %br/
+  I call this point in time, "Hour 1".
+  %br/
+  %br/
+  Then, I look at the change in the price of the pair during that 1 hour.
+  %br/
+  %br/
+  Next, I divide that price-change by the price at Hour 0.
+  %br/
+  %br/
+  I call this ratio the "Normalized 1 Hour Gain".
+  %br/
+  %br/
+  If this ratio is greater than -0.0010,
+  and if the DanBot-score is less than -0.55,
+  then I will open a short-position in the corresponding pair for 5 hours and then close it.
+  %br/
+  %br/
+  I refer to that moment in time as "Hour 6" because it is exactly 6 hours after the DanBot had calculated the score for that position.
+  %br/
+  %br/
+  If this ratio is less than +0.0010,
+  and if the DanBot-score is greater than +0.55,
+  then I will open a long-position in the corresponding pair for 5 hours and then close it at Hour 6.
+  %br/
+  %br/
+  Typically I rely on clock controlled orders in my brokerage account to close a position at Hour 6.
+  %br/
+  %br/
+  When I open a position in a currency pair, I usually do that manually at the keyboard.
+  %br/
+  %br/
+  Usually I act by calculating the Normalized 1 Hour Gain ratio in my head 
+  at exactly Hour 1 using the price displayed by my brokerage UI.
+  I dont rely on this website to calculate and then display the ratio for me.
+  %br/
+  %br/
+  Another way I often operate is to completely ignore the Normalized 1 Hour Gain ratio.
+  I act based solely on the value of the DanBot-score.
+  %br/
+  %br/
+  In that situation I just look for a DanBot-score issued within the past hour.
+  Then I look at the price of the corresponding pair in my brokerage UI.
+  %br/
+  %br/
+  If the price has not changed much or if it is favorable compared to the price at Hour 0,
+  I then open a position in the pair until exactly Hour 6 and then close it using a clock controlled order.
   %br/
   %br/
 
