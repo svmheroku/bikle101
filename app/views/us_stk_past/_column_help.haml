@@ -3,6 +3,8 @@
   avgtickerpriceathour0
   avgdanbotscoreathour0
   sharperatio
+  avg1hrgain
+
 
 :javascript
   $(document).ready(function() {
@@ -12,6 +14,7 @@
     $("div#help4_avgtickerpriceathour0").hide();
     $("div#help4_avgdanbotscoreathour0").hide();
     $("div#help4_sharperatio").hide();
+    $("div#help4_avg1hrgain").hide();
 
     $("a.stockticker").click(function(event){
       $("div#help4_stockticker").dialog({ minWidth: 300 });
@@ -27,6 +30,10 @@
 
     $("a.sharperatio").click(function(event){
       $("div#help4_sharperatio").dialog({ minWidth: 300 });
+    });
+
+    $("a.avg1hrgain").click(function(event){
+      $("div#help4_avg1hrgain").dialog({ minWidth: 300 });
     });
 
   });
@@ -174,3 +181,19 @@
   %a(target="w" href="http://www.wolframalpha.com/input/?i=standard+deviation+of+10%2C30")Standard Deviation of(10,30)
   %br/
   %a(target="w" href="http://www.wolframalpha.com/input/?i=standard+deviation+of+-20%2C60")Standard Deviation of(-20,60)
+
+
+#help4_avg1hrgain
+  %h4 Average 1 Hour Gain
+  Each week,
+  when I collect several DanBot scores,
+  I also collect corresponding ticker prices one hour after the score was issued.
+  %br/
+  %br/
+  Next, I calculate the gain for that one hour and then average those gains over the entire week.
+  %br/
+  %br/
+  That average of one hour gains is displayed here.
+  %br/
+
+
