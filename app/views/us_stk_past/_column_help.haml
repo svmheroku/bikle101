@@ -7,6 +7,7 @@
   avg24hrgain
   countofpositions
   sumof24hrgains
+  standarddeviationof24hrgains
 
 :javascript
   $(document).ready(function() {
@@ -20,6 +21,7 @@
     $("div#help4_avg24hrgain").hide();
     $("div#help4_countofpositions").hide();
     $("div#help4_sumof24hrgains").hide();
+    $("div#help4_standarddeviationof24hrgains").hide();
 
     $("a.stockticker").click(function(event){
       $("div#help4_stockticker").dialog({ minWidth: 300 });
@@ -51,6 +53,10 @@
 
     $("a.sumof24hrgains").click(function(event){
       $("div#help4_sumof24hrgains").dialog({ minWidth: 300 });
+    });
+
+    $("a.standarddeviationof24hrgains").click(function(event){
+      $("div#help4_standarddeviationof24hrgains").dialog({ minWidth: 300 });
     });
 
   });
@@ -281,3 +287,30 @@
   then that effectiveness will appear here and in the total sum at the bottom of the table.
   %br/
 
+
+#help4_standarddeviationof24hrgains
+  %h4 Standard Deviation of 24hr Gains
+  I use the values in this column to gain a sense of how "jumpy" the prices of a ticker were 
+  during the week in question (over a typical 24 hour period).
+  %br/
+  %br/
+  Obviously I want the ticker price to move in my favor after I open a position in that ticker.
+  %br/
+  %br/
+  I do not want to see a ticker which has large price swings up and down.
+  %br/
+  %br/
+  I detect that behavior by watching the Standard Deviation of the gains.
+  %br/
+  %br/
+  Large price swings increase the value of the Standard Deviation
+  and lower the value of the Sharpe Ratio since it has Standard Deviation in its denominator.
+  %br/
+  %br/
+  Note that if all the gains of a ticker are exactly the same value,
+  then the Standard Deviation of those gains is zero.
+  %br/
+  %br/
+  In that situation I round the value up from 0.000 to 0.001
+  which then allows me avoid a divide-by-zero error when I calculate the Sharpe Ratio.
+  %br/
