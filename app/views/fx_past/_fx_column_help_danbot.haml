@@ -13,7 +13,7 @@ It is easy to find discussion about predicting attributes in time series data us
   SVM and Time Series Data
 %br/
 %br/
-The DanBot issues prediction-scores on 11 differenct currency pairs every 5 minutes when the Forex market is open.
+The DanBot issues prediction-scores on 11 different currency pairs every 5 minutes when the Forex market is open.
 %br/
 %br/
 Currently the Forex market is open every hour between 9pm Sunday and 9pm Friday London time.
@@ -23,11 +23,11 @@ So, every hour the DanBot calculates 660 prediction-scores which is almost 16,00
 If a score is between -0.55 and 0.55, then I ignore it.
 %br/
 %br/
-If a score is greater than 0.55 on a currency pair at a point in time,
-then the DanBot is predicting that the currency pair price will be higher after 6 hours.
+If a score is greater than 0.55 on a currency pair at "Hour 0",
+then the DanBot is predicting that the currency pair price will be higher at "Hour 6" which is exactly 6 hours after Hour 0.
 %br/
 %br/
-Likewise, if a score is less than -0.55 on a currency pair at a point in time,
+Likewise, if a score is less than -0.55 on a currency pair at Hour 0,
 then the DanBot is predicting that the currency pair price will be lower after 6 hours.
 %br/
 %br/
@@ -38,12 +38,12 @@ I ignore the vast majority of scores
 In a typical week, about 1,000 scores will catch my attention.
 %br/
 %br/
-Once I see a score that I like, I wait until the score is 1 hour old.
+Once I see a score that I like, I wait until the score is 1 hour old (I call this point in time: "Hour 1").
 %br/
 %br/
 Then I check the price of the currency pair.
 If the price has moved less than 0.1% during that 1 hour,
-I will open a position in that currency pair for 5 hours and then I will close it.
+I will open a position in that currency pair for 5 hours and then I will close it at Hour 6.
 %br/
 %br/
 

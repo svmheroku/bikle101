@@ -1,2 +1,176 @@
 /
-  us_stk_past/_column_help.haml
+  app/views/us_stk_past/_column_help.haml
+  avgtickerpriceathour0
+  avgdanbotscoreathour0
+  sharperatio
+
+:javascript
+  $(document).ready(function() {
+
+    $("div#help4_column_help").hide();
+    $("div#help4_stockticker").hide();
+    $("div#help4_avgtickerpriceathour0").hide();
+    $("div#help4_avgdanbotscoreathour0").hide();
+    $("div#help4_sharperatio").hide();
+
+    $("a.stockticker").click(function(event){
+      $("div#help4_stockticker").dialog({ minWidth: 300 });
+    });
+
+    $("a.avgtickerpriceathour0").click(function(event){
+      $("div#help4_avgtickerpriceathour0").dialog({ minWidth: 300 });
+    });
+
+    $("a.avgdanbotscoreathour0").click(function(event){
+      $("div#help4_avgdanbotscoreathour0").dialog({ minWidth: 550 });
+    });
+
+    $("a.sharperatio").click(function(event){
+      $("div#help4_sharperatio").dialog({ minWidth: 300 });
+    });
+
+  });
+
+#help4_column_help
+  %hr/
+  %h4 Pop-Up Help
+  If you can read this text, that means you probably have JavaScript turned off.
+  %br/
+  %br/
+  This site mostly works okay if you have JavaScript turned off.
+  %br/
+  %br/
+  One thing which will not work is pop-up-help messages.
+  %br/
+  %br/
+  If you want to read the pop-up-help messages while you have JavaScript turned off,
+  you will find them below this line.
+  %hr/
+
+#help4_stockticker
+  %h4 Stock Ticker
+  This site displays short-term predictions on about 200 different stock tickers.
+  %br/
+  %br/
+  I have found that some stocks are more predictable than others.
+  Obviously if I decide that a stock is consistently unpredictable, I will replace its ticker with another ticker.
+  %br/
+  %br/
+  Another attribute of stocks which interests me is liquidity.
+  I consider a stock liquid if the spread between bid and ask is less than 5 cents.
+  %br/
+  %br/
+  For options on the stock, I am very pleased if the spread between bid and ask is less than 5 cents.
+  I want to focus my efforts on stocks which are both highly predictable and very liquid.
+  %br/
+  %br/
+
+#help4_avgtickerpriceathour0
+  %h4 Avg Ticker Price at Hour 0
+  Each week,
+  when I collect several DanBot scores, I also collect corresponding ticker prices.
+  %br/
+  %br/
+  An average of that list of prices is displayed here.
+  %br/
+  %br/
+  I have noticed that the ticker price averages tend to be a little higher when corresponding average DanBot scores are negative (bearish).
+  %br/
+  %br/
+  If the DanBot is powerful enough to predict when a stock is overpriced, it seems plausible that higher average prices would correspond to bearish predictions.
+  %br/
+  %br/
+  Most, but not all, stock prices revert-to-mean after they make a significant short-term move in one direction.
+  %br/
+  %br/
+  I know that the DanBot has the capability to make accurate predictions based on this type of stock behavior.
+  %br/
+  %br/
+  Also the DanBot can sense if if a stock does not usually revert-to-mean but instead "trends".
+  %br/
+  %br/
+  When the DanBot is sensing a stock which trends, I would expect the bullish DanBot scores to correspond to higher average ticker prices.
+  %br/
+
+#help4_avgdanbotscoreathour0
+  %h4 Avg DanBot Score at Hour 0
+  When I collect several DanBot scores for a ticker over the span of a week,
+  I average them and display that average here.
+  %br/
+  %br/
+  =render :partial => "column_help_danbot"
+  %br
+
+#help4_sharperatio
+  %h4 Sharpe Ratio
+  I use the Sharpe Ratio to help me measure the past effectiveness of the DanBot.
+  %br/
+  %br/
+  First I compare the sign of the Sharpe Ratio to the sign of Avg DanBot Score.
+  %br/
+  %br/
+  If the signs match, that indicates to me that DanBot was probably effective.
+  If the signs don't match that is definitely bad; the DanBot was issuing "false positive" predictions.
+  %br/
+  %br/
+  For example if I see that Avg DanBot Score for ADBE is -0.65,
+  I want to see a Sharpe Ratio of -1.0 or less.  If it were less than -10.0, I would be very pleased.
+  %br/
+  %br/
+  If the Sharpe Ratio is between -0.4 and 0.0, 
+  that is not great but I was not losing money either.
+  %br/
+  %br/
+  I calculate the Sharpe Ratio by taking the Avg of 24hr Gains and dividing it by Standard Deviation of 24hr Gains.
+  %br/
+  %br/
+  If the Standard Deviation of 24hr Gains is zero, I replace it with 0.001 to avoid divide-by-zero errors.
+  %br/
+  %br/
+  Wikipedia has an article about the Sharpe Ratio:
+  %a(target="w" href="http://en.wikipedia.org/wiki/Sharpe_ratio")http://en.wikipedia.org/wiki/Sharpe_ratio
+  %br/
+  %br/
+  For some, the article is a bit dense but the idea is simple.
+  %br/
+  %br/
+  Simply put,
+  If I am earning small gains from a stock which has large price fluctuations, that is a bad situation.
+  As the situation grows worse, the Sharpe Ratio moves toward zero.
+  %br/
+  %br/
+  Since the Sharpe Ratio can be viewed as a fraction, I see two ways it can move towards zero.
+  The numerator of the fraction is the average gain and if that number is zero, then the Sharpe Ratio is zero.
+  %br/
+  %br/
+  The denominator of the fraction is the standard deviation of the gains.
+  If the gains wildly fluctuate, the standard deviation grows large and the Sharpe Ratio moves toward zero.
+  %br/
+  %br/
+  I describe a simple example below using IBM.
+  %br/
+  %br/
+  Suppose during week one I do only 2 IBM trades and earn gains of $10 and $30.
+  The average gain for that week is $20 and the standard deviation for those 2 trades is about 14.1
+  %br/
+  %br/
+  During week two I do another 2 IBM trades and earn gains of -$20 and $60 and again the average for that week is $20.
+  %br/
+  %br/
+  Obviously -$20 and +$60 are spread farther apart then $10 and $30 so when I calculate the standard deviation for the second 2 trades, I expect to see a larger number.  And I do; it is about 56.6
+  %br/
+  %br/
+  Although the average gains match, I would argue that the "quality" of the gains from week one are better because
+  I endured less heartburn than during week two.
+  %br/
+  %br/
+  This heartburn cost is quantified by the Sharpe Ratio.
+  The Sharpe Ratio for week two is closer to zero than the Sharpe Ratio for week one.
+  %br/
+  %br/
+  To calculate the Sharpe Ratio I divide the average by the standard deviation.
+  For week one the Sharpe Ratio is 20 / 14.1 and for week two the Sharpe Ratio is 20 / 56.6
+  %hr/
+  %a(target="w" href="http://www.wolframalpha.com/input/?i=standard+deviation+of+10%2C30")Standard Deviation of(10,30)
+  %br/
+  %a(target="w" href="http://www.wolframalpha.com/input/?i=standard+deviation+of+-20%2C60")Standard Deviation of(-20,60)
