@@ -77,7 +77,7 @@
   you will find them below this line.
   %hr/
 
-#help4_stockticker
+#help4_stockticker(title="Column Help")
   %h4 Stock Ticker
   This site displays short-term predictions on about 200 different stock tickers.
   %br/
@@ -95,7 +95,7 @@
   %br/
   %br/
 
-#help4_avgtickerpriceathour0
+#help4_avgtickerpriceathour0(title="Column Help")
   %h4 Avg Ticker Price at Hour 0
   Each week,
   when I collect DanBot scores, I also collect corresponding ticker prices.
@@ -122,7 +122,7 @@
   When the DanBot is sensing a stock which trends, I would expect the bullish DanBot scores to correspond to higher average ticker prices.
   %br/
 
-#help4_avgdanbotscoreathour0
+#help4_avgdanbotscoreathour0(title="Column Help")
   %h4 Avg DanBot Score at Hour 0
   When I collect DanBot scores for a ticker over the span of a week,
   I average them and display that average here.
@@ -131,7 +131,7 @@
   =render :partial => "column_help_danbot"
   %br
 
-#help4_sharperatio
+#help4_sharperatio(title="Column Help")
   %h4 Sharpe Ratio
   I use the Sharpe Ratio to help me measure the past effectiveness of the DanBot.
   %br/
@@ -206,7 +206,7 @@
   %a(target="w" href="http://www.wolframalpha.com/input/?i=standard+deviation+of+-20%2C60")Standard Deviation of(-20,60)
   %br/
 
-#help4_avg1hrgain
+#help4_avg1hrgain(title="Column Help")
   %h4 Average 1 Hour Gain
   Each week,
   when I collect DanBot scores,
@@ -219,7 +219,7 @@
   That average of one hour gains is displayed here.
   %br/
 
-#help4_avg24hrgain
+#help4_avg24hrgain(title="Column Help")
   %h4 Average 24 Hour Gain
   Each week,
   when I collect DanBot scores,
@@ -251,7 +251,7 @@
   %br/
   %br/
 
-#help4_countofpositions
+#help4_countofpositions(title="Column Help")
   %h4 Count of Positions
   Currently, the DanBot focuses on about 200 stock tickers.
   %br/
@@ -270,7 +270,7 @@
   and thus will increment the counts in this column.
   %br/
 
-#help4_sumof24hrgains
+#help4_sumof24hrgains(title="Column Help")
   %h4 Sum of 24hr Gains
   The values in this column are calculated from the product of two other columns:
   %ul
@@ -288,7 +288,7 @@
   %br/
 
 
-#help4_standarddeviationof24hrgains
+#help4_standarddeviationof24hrgains(title="Column Help")
   %h4 Standard Deviation of 24hr Gains
   I use the values in this column to gain a sense of how "jumpy" the prices of a ticker were 
   during the week in question (over a typical 24 hour period).
