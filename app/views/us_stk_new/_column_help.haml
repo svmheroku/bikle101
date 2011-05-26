@@ -1,5 +1,6 @@
 /
   app/views/us_stk_new/_column_help.haml
+  
 
 :javascript
   $(document).ready(function() {
@@ -11,6 +12,7 @@
     $("div#help4_danbotscoreathour0").hide();
     $("div#help4_scoretype").hide();
     $("div#help4_gainathour1").hide();
+    $("div#help4_gmttimeathour24timetocloseposition").hide();
 
     $("a.stockticker").click(function(event){
       $("div#help4_stockticker").dialog({ minWidth: 300 });
@@ -34,6 +36,10 @@
 
     $("a.gainathour1").click(function(event){
       $("div#help4_gainathour1").dialog({ minWidth: 300 });
+    });
+
+    $("a.gmttimeathour24timetocloseposition").click(function(event){
+      $("div#help4_gmttimeathour24timetocloseposition").dialog({ minWidth: 300 });
     });
 
   });
@@ -153,4 +159,18 @@
   If the values here are blank either we are not at Hour 1 yet
   or the site has encountered software defects.
   These are usually noticed quickly and thus rapidly fixed.
+  %br/
+
+#help4_gmttimeathour24timetocloseposition(title="Column Help")
+  %h4 GMT Time at Hour 24
+  I have configured SVM so that it only looks for lucrative positions held for a duration of 24 hours.
+  %br/
+  %br/
+  This strategy allows me to enter a clock-triggered close-order immediately after I open each postion.
+  %br/
+  %br/
+  After I open a position (usually at Hour 1) and then I enter a clock-triggered close-order (to close the position 23 hours later at Hour 24), I can focus on other tasks.
+  %br/
+  %br/
+  I dislike any strategy which requires me to hover near my keyboard for hours or days to ensure that my attention captures signals from a server to close positions.
   %br/
