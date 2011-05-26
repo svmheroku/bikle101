@@ -14,7 +14,7 @@
             %a(href="/")bikle101.heroku.com
       %tr
         %td(valign="top")
-          %a(href="/predictions")Predictions
+          =render :partial => "/layouts/lhs_links"
         %td
           =yield
           =render :partial => 'column_help'
