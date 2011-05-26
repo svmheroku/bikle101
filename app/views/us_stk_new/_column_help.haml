@@ -1,6 +1,5 @@
 /
   app/views/us_stk_new/_column_help.haml
-  priceathour0
 
 :javascript
   $(document).ready(function() {
@@ -9,6 +8,9 @@
     $("div#help4_stockticker").hide();
     $("div#help4_gmttimeathour0").hide();
     $("div#help4_priceathour0").hide();
+    $("div#help4_danbotscoreathour0").hide();
+    $("div#help4_scoretype").hide();
+    $("div#help4_gainathour1").hide();
 
     $("a.stockticker").click(function(event){
       $("div#help4_stockticker").dialog({ minWidth: 300 });
@@ -20,6 +22,18 @@
 
     $("a.priceathour0").click(function(event){
       $("div#help4_priceathour0").dialog({ minWidth: 300 });
+    });
+
+    $("a.danbotscoreathour0").click(function(event){
+      $("div#help4_danbotscoreathour0").dialog({ minWidth: 550 });
+    });
+
+    $("a.scoretype").click(function(event){
+      $("div#help4_scoretype").dialog({ minWidth: 300 });
+    });
+
+    $("a.gainathour1").click(function(event){
+      $("div#help4_gainathour1").dialog({ minWidth: 300 });
     });
 
   });
@@ -113,4 +127,30 @@
   %br/
   %a(href="http://www.google.com/finance/option_chain?q=VMW" target="y")http://www.google.com/finance/option_chain?q=VMW
   %br/
+  %br/
+
+#help4_danbotscoreathour0(title="Column Help")
+  %h4 DanBot Score at Hour 0
+  =render :partial => "column_help_danbot"
+
+#help4_scoretype(title="Column Help")
+  %h4 Score Type
+  The values in this column are redundant.
+  %br/
+  %br/
+  If the DanBot-score is less than zero, I see that as a signal to sell.
+  Otherwise it is a buy signal.
+  %br/
+
+#help4_gainathour1(title="Column Help")
+  %h4 Gain at Hour 1
+  If the DanBot calculates a prediction-score that I like (below -0.55 or above +0.55) I wait for 1 hour.
+  %br/
+  %br/
+  The gain for the ticker over that 1 hour duration is displayed here.
+  %br/
+  %br/
+  If the values here are blank either we are not at Hour 1 yet
+  or the site has encountered software defects.
+  These are usually noticed quickly and thus rapidly fixed.
   %br/
