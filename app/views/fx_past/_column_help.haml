@@ -3,6 +3,7 @@
 
 :javascript
   $(document).ready(function() {
+    $("div#help4_column_help").hide();
     $("div#help4_currencypair").hide();
     $("div#help4_avgdanbotscore").hide();
     $("div#help4_sharperatio").hide();
@@ -54,8 +55,21 @@
       $("div#help4_standarddeviationofnormalized5hrgains").dialog({ minWidth: 300 });
     });
 
-
-
+#help4_column_help
+  %hr/
+  %h4 Pop-Up Help
+  If you can read this text, that means you probably have JavaScript turned off.
+  %br/
+  %br/
+  This site mostly works okay if you have JavaScript turned off.
+  %br/
+  %br/
+  One thing which will not work is pop-up-help messages.
+  %br/
+  %br/
+  If you want to read the pop-up-help messages while you have JavaScript turned off,
+  you will find them below this line.
+  %hr/
 
 #help4_currencypair(title="Column Help")
   %h4 Currency-pair
