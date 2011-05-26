@@ -1,20 +1,25 @@
 /
   _column_help.haml
+  scoretype
+  gmttimeathour6(timetocloseposition)
 
 :javascript
   $(document).ready(function() {
     $("div#help4_currencypair").hide();
     $("div#help4_gmttimeathour0").hide();
     $("div#help4_danbotscoreathour0").hide();
+    $("div#help4_scoretype").hide();
     $("div#help4_priceathour0").hide();
     $("div#help4_priceafter1hour").hide();
     $("div#help4_normalized1hrgain").hide();
-    $("div#help4_priceafter6hours").hide();
-    $("div#help4_5hourgainbetweenhr1andhr6").hide();
-    $("div#help4_normalized5hrgain").hide();
+    $("div#help4_gmttimeathour6timetocloseposition").hide();
 
     $("a.currencypair").click(function(event){
       $("div#help4_currencypair").dialog({ minWidth: 300 });
+    });
+
+    $("a.gmttimeathour6(timetocloseposition)").click(function(event){
+      $("div#help4_gmttimeathour6(timetocloseposition)").dialog({ minWidth: 300 });
     });
 
     $("a.gmttimeathour0").click(function(event){
@@ -23,6 +28,10 @@
 
     $("a.danbotscoreathour0").click(function(event){
       $("div#help4_danbotscoreathour0").dialog({ minWidth: 550 });
+    });
+
+    $("a.scoretype").click(function(event){
+      $("div#help4_scoretype").dialog({ minWidth: 300 });
     });
 
     $("a.priceathour0").click(function(event){
@@ -37,21 +46,14 @@
       $("div#help4_normalized1hrgain").dialog({ minWidth: 300 });
     });
 
-    $("a.priceafter6hours").click(function(event){
-      $("div#help4_priceafter6hours").dialog({ minWidth: 300 });
-    });
-
-    $("a.5hourgainbetweenhr1andhr6").click(function(event){
-      $("div#help4_5hourgainbetweenhr1andhr6").dialog({ minWidth: 300 });
-    });
-
-    $("a.normalized5hrgain").click(function(event){
-      $("div#help4_normalized5hrgain").dialog({ minWidth: 300 });
+    $("a.gmttimeathour6timetocloseposition").click(function(event){
+      $("div#help4_gmttimeathour6timetocloseposition").dialog({ minWidth: 300 });
     });
 
   });
 
-#help4_currencypair(title="Currency-pair")
+#help4_currencypair(title="Column Help")
+  %h4 Currency-Pair
   Currency-pairs have names like EUR/USD.
   %br/
   %br/
@@ -66,7 +68,8 @@
   By convention, some pairs are rarely referred to.
   For example, the EUR/USD pair is often mentioned in the media, but the USD/EUR pair is not.
 
-#help4_gmttimeathour0(title="GMT / UTC Time at Hour 0")
+#help4_gmttimeathour0(title="Column Help")
+  %h4 GMT / UTC Time at Hour 0
   This column contains GMT/UTC timestamps for each prediction-score.
   %br/
   %br/
@@ -84,12 +87,22 @@
   %a(target="g" href="http://www.google.com/search?q=current+time+in+London")
     http://www.google.com/search?q=current+time+in+London
   %br/
-  %br/
 
-#help4_danbotscoreathour0(title="DanBot Score")
+#help4_danbotscoreathour0(title="Column Help")
+  %h4 DanBot-Score
   =render :partial => "fx_column_help_danbot"
 
-#help4_priceathour0(title="Price at Hour 0")
+#help4_scoretype(title="Column Help")
+  %h4 Score Type
+  The values in this column are redundant.
+  %br/
+  %br/
+  If the DanBot-score is less than zero, I see that as a signal to sell.
+  Otherwise it is a buy signal.
+  %br/
+
+#help4_priceathour0(title="Column Help")
+  %h4 Price at Hour 0
   Every five minutes, for each of the 11 currency-pairs, I feed the DanBot two pieces of information.
   %br/
   %br/
@@ -113,7 +126,8 @@
   %br/
   %br/
 
-#help4_priceafter1hour(title="Price After 1 Hour")
+#help4_priceafter1hour(title="Column Help")
+  %h4 Price After 1 Hour
   If the DanBot calculates a prediction-score that I like (below -0.55 or above +0.55) I wait for 1 hour.
   %br/
   %br/
@@ -125,7 +139,8 @@
   or the WebBot which transfers data from the DanServers to this website has crashed.
   %br/
 
-#help4_normalized1hrgain(title="Normalized 1 Hour Gain")
+#help4_normalized1hrgain(title="Column Help")
+  %h4 Normalized 1 Hour Gain
   After the DanBot issues a prediction-score for a pair, I wait 1 hour.
   %br/
   %br/
@@ -180,101 +195,19 @@
   This second way of reacting to DanBot-score is less disciplined than the first
   but I have validated that it is an effective way to trade using back-testing.
   %br/
+
+#help4_gmttimeathour6timetocloseposition(title="Column Help")
+  %h4 GMT Time at Hour 6
+  I have configured SVM so that it only looks for lucrative positions held for a duration of 6 hours.
+  %br/
+  %br/
+  This strategy allows me to enter a clock-triggered close-order immediately after I open each postion.
+  %br/
+  %br/
+  After I open a position (usually at Hour 1) and then I enter a clock-triggered close-order (to close the position 5 hours later at Hour 6), I can go play golf.
+  %br/
+  %br/
+  I dislike any strategy which requires me to hover near my keyboard for hours or days to ensure that my attention captures signals from a server to close positions.
   %br/
 
-#help4_priceafter6hours(title="Price At Hour 6")
-  This is the price of the currency-pair 6 hours after the DanBot-score was calculated.
-  %br/
-  %br/
-  If the values here are blank either we are not at Hour 6 yet
-  or my price-data-feed has crashed
-  or the WebBot which transfers data from the DanServers to this website has crashed.
-  %br/
-  %br/
-
-#help4_5hourgainbetweenhr1andhr6(title="5 Hour Gain Between Hour 1 and Hour 6")
-  Typically I open a position at Hour 1 and close it at Hour 6 which is a 5 hour duration.
-  %br/
-  %br/
-  The change in price of the currency-pair over that 5 hour duration is displayed here.
-  %br/
-  %br/
-
-#help4_normalized5hrgain(title="Normalized 5 Hour Gain Between Hour 1 and Hour 6")
-  Typically I open a position at Hour 1 and close it at Hour 6 which is a 5 hour duration.
-  %br/
-  %br/
-  Over that 5 hour duration, 
-  the change in price of the currency-pair divided by the price at Hour 0 is displayed here.
-  %br/
-  %br/
-  Suppose I open a short-position in AUD/JPY (due to a DanBot score of -0.74 I noticed).
-  %br/
-  %br/
-  I open the position at Hour 1 at a price of 86.3473.
-  %br/
-  %br/
-  I wait 5 hours and close the position at Hour 6 at a price of 85.9327.
-  %br/
-  %br/
-  The 5 hour gain would then be: -0.4146
-  %br/
-  %br/
-  The normalized 5 hour gain would be about - 0.41 / 86 which is about -0.0048.
-  %br/
-  %br/
-  This gain would be less lucrative than a short-position in EUR/USD which had a price move of 
-  1.4313 to 1.4225.
-  %br/
-  %br/
-  The normalized 5 hour gain for the EUR/USD position is about:
-  %br/
-  %br/
-  (1.4225 - 1.4313) / 1.43 which is about -0.0060.
-  %br/
-  %br/
-  So, the normalized gain of the short-position in AUD/JPY is about -0.0048.
-  %br/
-  %br/
-  And the normalized gain of the short-position in EUR/USD is about -0.0060.
-  %br/
-  %br/
-  Clearly the short-position in EUR/USD is more lucrative than the short-position in AUD/JPY.
-  %br/
-  %br/
-  If I have a normalized gain of 0.0060, how much money is that?
-  %br/
-  %br/
-  The calculation is simple, just multiply 0.0060 times the size of the position.
-  %br/
-  %br/
-  The smallest position I can trade is about $20,000.
-  %br/
-  %br/
-  So, 0.0060 x $20,000 is $120.
-  %br/
-  %br/
-  When I make Forex trades I usually finance them using borrowed money from my broker called "Margin".
-  %br/
-  %br/
-  My broker will extend me a loan up to 97.5% of the position to open the position.
-  I need to supply my own money to make-up the remaining 2.5% of the position.
-  %br/
-  %br/
-  So, to earn that $120, I need to supply $500 of my own cash.
-  %br/
-  %br/
-  If I earn $120 from an investment of $500 that is a rate of return of 100 x 120 / 500 is 24%.
-  %br/
-  %br/
-  I do, however, need to pay 2 brokerage commissions to open and then close the postion which is about $5.
-  So, that knocks the rate of return down to 100 x 115 / 500 is 23%
-  %br/
-  %br/
-  A little algebra reveals that the rate of return is about 4000 x normalized 5 hour gain.
-  %br/
-  %br/
-  After doing many Forex trades, I've just memorized the fact that a normalized 5 hour gain of 0.0010
-  is about the same as a 4% gain on my 2.5% margin, which is a decent gain for an asset held only 5 hours.
-  %br/
-  %br/
+  
